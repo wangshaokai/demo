@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+*{ margin:0; padding:0; font-family:"微软雅黑"; font-size:14px;}
+li{ list-style:none; }
+a{ text-decoration:none; }
+em,i{ font-style:normal; }
+b,strong{ font-weight:normal; }
+input,textarea,button,select{ outline:none; resize:none; }
+table{ border-collapse:collapse; width:100%; }
+.fl{ float:left;display:inline;}
+.fr{ float:right;display:inline;}
+.clearFix:after{content:""; display:block; clear:both;  }
+.clearFix{zoom:1; }
+a{ color:#333; cursor:pointer; }
+body{ font-size:14px; color:#333; min-width:1000px; }
+.warp{ width:1000px; margin:0 auto; }
+body,html{ height:auto; }
+table td a{cursor:pointer;}
+
+.location{width:100%;height:32px;margin-bottom: 30px;border-bottom: 1px solid #ddd;}
+.location span{font-size: 16px;}
+.location a{cursor: pointer;font-size: 16px;}
+.handle{width:100%;height:30px;line-height: 30px;margin-bottom: 30px;}
+.handle a{display: inline-block;width:90px;height:25px;text-align: center;line-height: 25px;color: #fff;background: #ff6600;cursor: pointer;border-radius: 5px; margin-right:20px; }
+table th{height:37px;border: 1px solid #e3e3e3;background:#fafafa;font-weight: normal; font-size:16px;}
+table td{height:37px;text-align:center;border: 1px solid #ddd; font-size:14px;}
+table td a{cursor: pointer;color: #ff6600;}
+/*地址栏*/
+.node_city_container_location{width:100%;height:65px;line-height:65px;margin-bottom:15px;font-size:16px;box-sizing:border-box;}
+.node_city_container_location a{cursor: pointer}
+
+.section{
+	min-height: 510px;
+}
+/*登录模态框*/
+.dialog{background:rgba(0,0,0,0.45);width:100%;height:100%;position:fixed;top:0px;left:0px;z-index:99;display:none;}
+.dialog .dialog_main{width:382px;height:320px;background:#fff;margin:200px auto 0;overflow:hidden;border-top:3px solid #df0716;z-index:99;opacity:1;}
+.dialog .dialog_main .dialog_main_title{width:370px;margin:0 auto;height:46px;line-height:46px;}
+.dialog .dialog_main .dialog_main_title b{float:left;}
+.dialog .dialog_main .dialog_main_title span{cursor:pointer;margin-top:15px;float:left;text-align:right;width:27px;height:27px;display:block;background:#c5c5c5;text-align:center;line-height:27px;border-radius:100%;color:#fff;float:right;}
+.dialog .dialog_main .input_box{width:317px;height:39px;border:1px solid #b0b0b0;margin:0 auto;margin-top:14px;}
+.dialog .dialog_main .input_box span{width:40px;height:39px;line-height:39px;display:block;padding-left:28px;margin-left:10px;font-size:12px;color:#666;float:left;}
+.dialog .dialog_main .input_box span.zhang{background:url(../images/zhang.png) no-repeat left center;}
+.dialog .dialog_main .input_box input[type=text]{float:left;width:228px;height:37px;border:none;}
+.dialog .dialog_main .input_box span.mi{background:url(../images/mial.png) no-repeat left center;}
+.dialog .dialog_main .input_box i{width:62px;height:32px;display:inline-block;background:#d3cec9;margin-left:14px;}
+.dialog .dialog_main .input_box a{text-decoration: underline;color:#0088cc;float:right;line-height:39px;}
+.dialog .dialog_main .deng{width:80%;height:40px;margin:0 auto;margin-top:20px;background:#3298d5;color:#fff;line-height:40px;text-align:center;display:block;}
+.dialog .dialog_main .input_box em{float:right;line-height:39px;}
+.dialog .dialog_main .input_box input[type=checkbox]{float:right;margin-top:14px;margin-right:5px;}
