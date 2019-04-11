@@ -1,42 +1,48 @@
 <template>
-	
-		<div>
-			<div class="head">
-				<div class="warp clearFix">
-					<span class="fl">您当前的所属地区是：中国</span>
-					<p class="fr">
-						<a href="register.html" class="fl log_cor">注册</a>
-						<span class="fl">|</span>
-						<a href="javascript:;" class="fl log_cor conmmon_log">企业登录</a>
-						<span class="fl name_tuichu conmmon_name"><i style="cursor:pointer;"></i><a href="javascript:;" class="log_cor">退出登录</a></span>
-						<a href="about_us.html" class="fr">关于平台</a>
-					</p>
-				</div>
-			</div>
-			<div class="logo">
-				<div class="warp">
-					<img src="../../../static/images/logo.png" />
-				</div>
-			</div>
-			<div class="nav">
-				<ul class="warp clearFix qita">
-					<li class="fl" v-for="(item,index) in navList">
-						<router-link :to="item.url">{{item.title}}</router-link>
-						<span></span>
-					</li>
-				</ul>
-				<div class="clearFix two">
-					<p class="fl" onclick="window.location.href='fgw_record.html'">
-						<img src="images/fgw.png" />
-						<i>信用服务机构<br>（参与委行业信用建设）</i>
-					</p>
-					<p class="fl" onclick="window.location.href='bank_record.html'">
-						<img src="images/rmyh.png" alt="" />
-						<i class="i1">人民银行备案名单</i>
-					</p>
-				</div>
+
+	<div>
+		<div class="head">
+			<div class="warp clearFix">
+				<span class="fl">您当前的所属地区是：中国</span>
+				<p class="fr">
+					<a href="register.html" class="fl log_cor">注册</a>
+					<span class="fl">|</span>
+					<a href="javascript:;" class="fl log_cor conmmon_log" v-if="!loginShow" @click="login">企业登录</a>
+					<span class="fl name_tuichu conmmon_name" v-else><i style="cursor:pointer;">{{userName}}</i><a href="javascript:;" class="log_cor">退出登录</a></span>
+					<a href="about_us.html" class="fr">关于平台</a>
+				</p>
 			</div>
 		</div>
+		<div class="logo">
+			<div class="warp">
+				<img src="../../../static/images/logo.png" />
+			</div>
+		</div>
+		<div class="nav">
+			<ul class="warp clearFix qita">
+				<li :class="path==item.url?'fl acti':'fl'" v-for="(item,index) in navList" @click="navActive()">
+					<router-link :to="item.url">{{item.title}}</router-link>
+					<span></span>
+				</li>
+			</ul>
+			<transition name="fade" enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
+				<div class="clearFix two" v-if="show">
+					<p @click="navActive()"  class="fl">
+						<router-link to="/fgwRecord">
+							<img src="../../../static/images/fgw.png" />
+							<i>信用服务机构<br>（参与委行业信用建设）</i>
+						</router-link>
+					</p>
+					<p @click="navActive()"  class="fl">
+						<router-link to="/bankRecord">
+							<img src="../../../static/images/rmyh.png" alt="" />
+							<i class="i1">人民银行备案名单</i>
+						</router-link>
+					</p>
+				</div>
+			</transition>
+		</div>
+	</div>
 
 </template>
 
@@ -44,46 +50,74 @@
 	export default {
 		data() {
 			return {
-                navList:[
-					
-					{
-						title:"首页",
-						url:"index"
+				path:null,
+				show: false,
+				navList: [{
+						title: "首页",
+						url: "/index"
 					},
 					{
-						title:"备案名单",
-						url:""
+						title: "备案名单",
+						url: "/javascript:;"
 					},
 					{
-						title:"行业准则",
-						url:""
+						title: "行业准则",
+						url: "/industryStandard"
 					},
 					{
-						title:"信息公示",
-						url:""
+						title: "信息公示",
+						url: ""
 					},
 					{
-						title:"信用评价",
-						url:""
-					},{
-						title:"信用记录",
-						url:""
+						title: "信用评价",
+						url: ""
+					}, {
+						title: "信用记录",
+						url: ""
 					},
 					{
-						title:"联合惩戒",
-						url:""
+						title: "联合惩戒",
+						url: ""
 					},
-				]
+				],
+				navPath: "",
+				userName:sessionStorage.getItem("userName"),
+				loginShow:null
 			};
 		},
-		mounted(){
-			// this.getCity()
+		mounted() {
+			//判断是否登录
+			this.loginJuade();
 		},
-		methods:{
-			//获取当前位置
-// 			getCity(){
-// 				console.log(IPData)
-// 			}
+		methods: {
+			//导航选中
+			navActive() {
+				// console.log(this.$route.path)
+				this.path=this.$route.path;
+				if (this.path == "/javascript:;") {
+					this.show = !this.show;
+				} else {
+					this.show = false;
+				}
+				if (this.path == "/fgwRecord" || this.path == "/bankRecord") {
+					this.path = "/javascript:;"
+					this.show = false;
+				}
+				this.navPath = this.path;
+			},
+			//点击登录
+			login(){
+				this.$router.push({path:'/login'})
+			},
+			//判断是否登录
+			loginJuade(){
+				// console.log(this.userName);
+				if(this.userName){
+					this.loginShow=true
+				}else{
+					this.loginShow=false
+				}
+			}
 		}
 	}
 </script>
@@ -156,7 +190,7 @@
 		width: 100%;
 		z-index: 1;
 		background: white;
-		display: none;
+		/* display: none; */
 	}
 
 	.nav div p {

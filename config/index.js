@@ -10,7 +10,22 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+			'/api': {  //使用"/api"来代替"http://f.apiplus.c"
+				target: 'http://dev.gcx365.com:8001/', //源地址
+				changeOrigin: true, //改变源
+				pathRewrite: {
+					'^/api': 'http://dev.gcx365.com:8001/'
+				}
+			},
+// 			'/verification': {  //使用"/api"来代替"http://f.apiplus.c"
+// 				target: 'http://119.90.51.183:10104/', //源地址
+// 				changeOrigin: true, //改变源
+// 				pathRewrite: {
+// 					'^/verification': 'http://119.90.51.183:10104/'
+// 				}
+// 			}
+		},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
